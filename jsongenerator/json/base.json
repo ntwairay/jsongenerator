@@ -1,0 +1,752 @@
+{
+    "Logging": {
+        "IncludeScopes": false,
+        "LogLevel": {
+            "Default": "Warning",
+            "System": "Information",
+            "Microsoft": "Information"
+        }
+    },
+    "ConnectorDeployerOptions": {
+        "Resource": "https://management.core.windows.net/",
+        "Audience": "https://login.microsoftonline.com/43909106-bb99-4431-a550-e1b5281bc3b9",
+        "AzureManagementApiEndpoint": "https://management.azure.com",
+        "DefaultAzureLocation": "australiaeast"
+    },
+    "Backup": {
+        "BackupType": "AzureBlob"
+    },
+    "Office365ManagementApiOptions": {
+        "RecordPointPublisherIdentifier": "43909106-bb99-4431-a550-e1b5281bc3b9"
+    },
+    "SharePointOnlineConnector": {
+        "ClientId": "8bc2fbf3-38d6-4a32-a085-0d248c18ce85"
+    },
+    "OneDriveForBusinessConnector": {
+        "ClientId": "cf03528d-2f50-4579-8f6b-d20dd8a67bbb"
+    },
+    "LaunchDarklyFeatureToggle": {
+        "ReadTimeoutSeconds": 300,
+        "ReconnectTimeSeconds": 1,
+        "HttpClientTimeoutSeconds": 10,
+        "IsStreamingEnabled": false
+    },
+    "Diagnostics": {
+        "KestrelDebugLogging": false
+    },
+    "Connector": {
+        "ServerCertificateValidation": false,
+        "DefaultRetryOptions": {
+            "MaxTryCount": 4,
+            "RetryDelayMilliseconds": 200
+        },
+        "MaxBinarySizeBytes": 524288000
+    },
+    "Webhook": {
+        "HttpsOnly": false,
+        "ServerCertificateValidation": false,
+        "MaxConnectionsPerProcessor": 100,
+        "DefaultRetryOptions": {
+            "MaxTryCount": 5,
+            "RetryDelayMilliseconds": 1000
+        }
+    },
+    "ConnectorGallery": [
+        {
+            "Id": "dad16653-9516-40fa-993a-d3d51706bb8d",
+            "FriendlyTypeName": "SharePoint Online",
+            "ShortFriendlyTypeName": "SharePoint",
+            "Publisher": "RecordPoint",
+            "ClientId": "8bc2fbf3-38d6-4a32-a085-0d248c18ce85",
+            "ContentSource": "SharePoint Online",
+            "NotificationAuthenticationResource": "http://sharepointonlineeiger.rptenant1.onmicrosoft.com/",
+            "NotificationTypes": [
+                "ItemDestroyed",
+                "Ping",
+                "ConnectorConfigCreated",
+                "ConnectorConfigUpdated",
+                "ConnectorConfigDeleted"
+            ],
+            "AllowClientIdOverride": false,
+            "IsHidden": false,
+            "DefaultSourceFields": [
+                {
+                    "Name": "ContentTypeId",
+                    "Type": "String"
+                },
+                {
+                    "Name": "File_x0020_Type",
+                    "Type": "String"
+                },
+                {
+                    "Name": "Keywords",
+                    "Type": "String"
+                },
+                {
+                    "Name": "KpiDescription",
+                    "Type": "String"
+                },
+                {
+                    "Name": "Editor",
+                    "Type": "String"
+                },
+                {
+                    "Name": "FirstPublishedDate",
+                    "Type": "DateTime"
+                },
+                {
+                    "Name": "Priority",
+                    "Type": "String"
+                },
+                {
+                    "Name": "StartDate",
+                    "Type": "DateTime"
+                },
+                {
+                    "Name": "Subject",
+                    "Type": "String"
+                },
+                {
+                    "Name": "Status",
+                    "Type": "String"
+                },
+                {
+                    "Name": "DueDate",
+                    "Type": "DateTime"
+                },
+                {
+                    "Name": "ContentTypeName",
+                    "Type": "String"
+                },
+                {
+                    "Name": "LibraryName",
+                    "Type": "String"
+                },
+                {
+                    "Name": "SiteName",
+                    "Type": "String"
+                },
+                {
+                    "Name": "RootSiteName",
+                    "Type": "String"
+                },
+                {
+                    "Name": "Description",
+                    "Type": "String"
+                },
+                {
+                    "Name": "Body",
+                    "Type": "String"
+                },
+                {
+                    "Name": "Comment",
+                    "Type": "String"
+                }
+            ]
+        },
+        {
+            "Id": "13309acb-2bf8-4b51-a89c-e9a0625aa0dc",
+            "FriendlyTypeName": "OneDrive for Business",
+            "ShortFriendlyTypeName": "OneDrive for Business",
+            "Publisher": "RecordPoint",
+            "ClientId": "cf03528d-2f50-4579-8f6b-d20dd8a67bbb",
+            "ContentSource": "OneDrive for Business",
+            "NotificationAuthenticationResource": "https://rptenant1.onmicrosoft.com/bb11d4c3-b33c-4f90-93a0-a043a8a4f899",
+            "NotificationTypes": [
+                "ItemDestroyed",
+                "Ping",
+                "ConnectorConfigCreated",
+                "ConnectorConfigUpdated",
+                "ConnectorConfigDeleted"
+            ],
+            "AllowClientIdOverride": false,
+            "IsHidden": false,
+            "DefaultSourceFields": [
+                {
+                    "Name": "ContentTypeId",
+                    "Type": "String"
+                },
+                {
+                    "Name": "File_x0020_Type",
+                    "Type": "String"
+                },
+                {
+                    "Name": "Keywords",
+                    "Type": "String"
+                },
+                {
+                    "Name": "KpiDescription",
+                    "Type": "String"
+                },
+                {
+                    "Name": "Editor",
+                    "Type": "String"
+                },
+                {
+                    "Name": "FirstPublishedDate",
+                    "Type": "DateTime"
+                },
+                {
+                    "Name": "Priority",
+                    "Type": "String"
+                },
+                {
+                    "Name": "StartDate",
+                    "Type": "DateTime"
+                },
+                {
+                    "Name": "Subject",
+                    "Type": "String"
+                },
+                {
+                    "Name": "Status",
+                    "Type": "String"
+                },
+                {
+                    "Name": "DueDate",
+                    "Type": "DateTime"
+                },
+                {
+                    "Name": "ContentTypeName",
+                    "Type": "String"
+                },
+                {
+                    "Name": "LibraryName",
+                    "Type": "String"
+                },
+                {
+                    "Name": "SiteName",
+                    "Type": "String"
+                },
+                {
+                    "Name": "AccountOwner",
+                    "Type": "String"
+                },
+                {
+                    "Name": "Description",
+                    "Type": "String"
+                },
+                {
+                    "Name": "Body",
+                    "Type": "String"
+                },
+                {
+                    "Name": "Comment",
+                    "Type": "String"
+                }
+            ]
+        },
+        {
+            "Id": "4F83891D-0027-4DF9-BE3C-3C842644716A",
+            "FriendlyTypeName": "Box",
+            "ShortFriendlyTypeName": "Box",
+            "Publisher": "RecordPoint",
+            "ContentSource": "Box",
+            "NotificationTypes": [
+                "ItemDestroyed",
+                "Ping"
+            ],
+            "AllowClientIdOverride": false,
+            "IsHidden": false
+        },
+        {
+            "Id": "34D926C9-3891-4262-B7DE-1345B1CF2F92",
+            "FriendlyTypeName": "FileConnect",
+            "ShortFriendlyTypeName": "FileConnect",
+            "Publisher": "RecordPoint",
+            "ClientId": "0971f1e9-efb7-4a73-9538-cb90bce26815",
+            "ContentSource": "FileConnect",
+            "NotificationTypes": [],
+            "AllowClientIdOverride": true,
+            "IsHidden": false,
+            "UseNotificationPolling": true
+        },
+        {
+            "Id": "424548D6-4D1A-4A7F-8879-05E067F47773",
+            "FriendlyTypeName": "Physical",
+            "ShortFriendlyTypeName": "Physical",
+            "Publisher": "RecordPoint",
+            "ClientId": "aa8aeaac-3823-4d1e-8503-d074bae56f08",
+            "ContentSource": "Records365",
+            "NotificationAuthenticationResource": "https://na",
+            "NotificationUrl": "https://na",
+            "NotificationTypes": [
+                "ItemDestroyed",
+                "Ping"
+            ],
+            "AllowClientIdOverride": true,
+            "IsHidden": true
+        },
+        {
+            "Id": "7246bf40-e070-4148-a1cd-14abcb1ad910",
+            "FriendlyTypeName": "SharePoint",
+            "ShortFriendlyTypeName": "SharePoint",
+            "Publisher": "RecordPoint",
+            "ClientId": "",
+            "ContentSource": "SharePoint",
+            "NotificationTypes": [
+                "ItemDestroyed"
+            ],
+            "AllowClientIdOverride": true,
+            "UseNotificationPolling": true,
+            "IsHidden": false
+        },
+        {
+            "Id": "0e964f1c-4bba-4f89-bcbf-403945971ec2",
+            "FriendlyTypeName": "Confluence Cloud",
+            "ShortFriendlyTypeName": "Confluence",
+            "Publisher": "RecordPoint",
+            "ClientId": "8bc2fbf3-38d6-4a32-a085-0d248c18ce85",
+            "ContentSource": "Confluence Cloud",
+            "NotificationAuthenticationResource": "https://rptenant1.onmicrosoft.com/bb11d4c3-b33c-4f90-93a0-a043a8a4f899",
+            "NotificationTypes": [
+                "ItemDestroyed",
+                "ConnectorConfigCreated",
+                "ConnectorConfigUpdated",
+                "ConnectorConfigDeleted"
+            ],
+            "AllowClientIdOverride": false
+        },
+        {
+            "Id": "449d9018-9543-4cb7-886c-b84d4a1675aa",
+            "FriendlyTypeName": "Exchange Online",
+            "ShortFriendlyTypeName": "Exchange Online",
+            "Publisher": "RecordPoint",
+            "clientId": "a19b9f29-492f-4f85-8cef-b603a9372cf3",
+            "ContentSource": "Exchange Online",
+            "NotificationAuthenticationResource": "https://rptenant1.onmicrosoft.com/ef6a9d27-93cc-46ff-a0f2-c462c193670a",
+            "NotificationTypes": [
+                "ItemDestroyed",
+                "ConnectorConfigCreated",
+                "ConnectorConfigUpdated",
+                "ConnectorConfigDeleted"
+            ],
+            "AllowClientIdOverride": false,
+            "UseNotificationPolling": false,
+            "IsHidden": false,
+            "AgentManifestUrl": "",
+            "Manifest": {
+                "ConnectorTypeManifestUIElements": [
+                    {
+                        "Icon": "envelope",
+                        "Key": "ManagedMailBoxes",
+                        "ValuesCanBeChangedAfterConnectorEnabled": true,
+                        "Type": "ListOfValues",
+                        "Position": 1,
+                        "Properties": [
+                            {
+                                "Name": "ListOfValuesValidationType",
+                                "Type": "String",
+                                "Value": "Email"
+                            }
+                        ],
+                        "Translations": [
+                            {
+                                "Language": "en-US",
+                                "Values": {
+                                    "title": "Add Managed Mailboxes",
+                                    "listofvaluesaddbuttontext": "Add Managed Mailbox"
+                                }
+                            },
+                            {
+                                "Language": "pt-PT",
+                                "Values": {
+                                    "title": "Adicionar caixas de correio gerenciadas",
+                                    "listofvaluesaddbuttontext": "Adicionar caixa de correio gerenciada"
+                                }
+                            },
+                            {
+                                "language": "en-AU",
+                                "values": {
+                                    "title": "Add Managed Mailboxes",
+                                    "listofvaluesaddbuttontext": "Add Managed Mailbox"
+                                }
+                            },
+                            {
+                                "language": "fr-FR",
+                                "values": {
+                                    "title": "Ajouter des boîtes aux lettres gérées",
+                                    "listofvaluesaddbuttontext": "Ajouter une boîte aux lettres gérée"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "Icon": "tasks",
+                        "Key": "AggregationLevel",
+                        "ValuesCanBeChangedAfterConnectorEnabled": false,
+                        "Type": "DropDown",
+                        "Position": 2,
+                        "Properties": [
+                            {
+                                "Name": "DropDownKeys",
+                                "Type": "String",
+                                "Value": "mailbox|conversations|topmostfolder|lowestlevelfolder"
+                            }
+                        ],
+                        "Translations": [
+                            {
+                                "Language": "en-US",
+                                "Values": {
+                                    "title": "Set Aggregation Level",
+                                    "dropdowndescription": "Default Aggregation Level",
+                                    "mailbox": "Mailbox",
+                                    "topmostfolder": "Top Most Folder",
+                                    "lowestlevelfolder": "Lowest Level Folder"
+                                }
+                            },
+                            {
+                                "Language": "pt-PT",
+                                "Values": {
+                                    "title": "Definir o n�vel de agrega��o",
+                                    "dropdowndescription": "N�vel de Agrega��o Padr�o",
+                                    "mailbox": "Caixa de correio",
+                                    "topmostfolder": "Topo Mais Pasta",
+                                    "lowestlevelfolder": "Pasta de n�vel mais baixo"
+                                }
+                            },
+                            {
+                                "language": "en-AU",
+                                "values": {
+                                    "title": "Set Aggregation Level",
+                                    "dropdowndescription": "Default Aggregation Level",
+                                    "mailbox": "Mailbox",
+                                    "topmostfolder": "Top Most Folder",
+                                    "lowestlevelfolder": "Lowest Level Folder"
+                                }
+                            },
+                            {
+                                "language": "fr-FR",
+                                "values": {
+                                    "title": "Définir nievau d'aggregation et exceptions",
+                                    "dropdowndescription": "Niveau d'aggregation par défaut*",
+                                    "mailbox": "Boîtes aux lettres",
+                                    "topmostfolder": "Dossier plus haut",
+                                    "lowestlevelfolder": "Dossier plus bas"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "icon": "history",
+                        "key": "EmailsToSubmit",
+                        "valuesCanBeChangedAfterConnectorEnabled": true,
+                        "type": "DropDown",
+                        "position": 3,
+                        "properties": [
+                            {
+                                "name": "DropDownKeys",
+                                "type": "String",
+                                "value": "onlynew|previousonemonth|previousthreemonths|previoussixmonths|all"
+                            }
+                        ],
+                        "translations": [
+                            {
+                                "language": "en-US",
+                                "values": {
+                                    "dropdowndescription": "Emails To Submit",
+                                    "title": "Emails To Submit",
+                                    "onlynew": "Only New Emails",
+                                    "previousonemonth": "Previous Emails in the last 1 month",
+                                    "previousthreemonths": "Previous Emails in the last 3 months",
+                                    "previoussixmonths": "Previous Emails in the last 6 months",
+                                    "all": "All Previous Emails"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "icon": null,
+                        "key": "filters",
+                        "valuesCanBeChangedAfterConnectorEnabled": true,
+                        "type": "Filters",
+                        "position": 4,
+                        "properties": [],
+                        "translations": []
+                    }
+                ]
+            },
+            "defaultSourceFields": [
+                {
+                    "name": "bccRecipients",
+                    "type": "String",
+                    "value": null
+                },
+                {
+                    "name": "categories",
+                    "type": "String",
+                    "value": null
+                },
+                {
+                    "name": "ccRecipients",
+                    "type": "String",
+                    "value": null
+                },
+                {
+                    "name": "changeKey",
+                    "type": "String",
+                    "value": null
+                },
+                {
+                    "name": "conversationId",
+                    "type": "String",
+                    "value": null
+                },
+                {
+                    "name": "createdDateTime",
+                    "type": "DateTime",
+                    "value": null
+                },
+                {
+                    "name": "flag",
+                    "type": "String",
+                    "value": null
+                },
+                {
+                    "name": "from",
+                    "type": "String",
+                    "value": null
+                },
+                {
+                    "name": "hasAttachments",
+                    "type": "Boolean",
+                    "value": null
+                },
+                {
+                    "name": "id",
+                    "type": "String",
+                    "value": null
+                },
+                {
+                    "name": "importance",
+                    "type": "String",
+                    "value": null
+                },
+                {
+                    "name": "inferenceClassification",
+                    "type": "String",
+                    "value": null
+                },
+                {
+                    "name": "internetMessageHeaders",
+                    "type": "String",
+                    "value": null
+                },
+                {
+                    "name": "internetMessageId",
+                    "type": "String",
+                    "value": null
+                },
+                {
+                    "name": "isDeliveryReceiptRequested",
+                    "type": "Boolean",
+                    "value": null
+                },
+                {
+                    "name": "isDraft",
+                    "type": "Boolean",
+                    "value": null
+                },
+                {
+                    "name": "isRead",
+                    "type": "Boolean",
+                    "value": null
+                },
+                {
+                    "name": "isReadReceiptRequested",
+                    "type": "Boolean",
+                    "value": null
+                },
+                {
+                    "name": "lastModifiedDateTime",
+                    "type": "DateTime",
+                    "value": null
+                },
+                {
+                    "name": "parentFolderId",
+                    "type": "String",
+                    "value": null
+                },
+                {
+                    "name": "receivedDateTime",
+                    "type": "DateTime",
+                    "value": null
+                },
+                {
+                    "name": "replyTo",
+                    "type": "String",
+                    "value": null
+                },
+                {
+                    "name": "sender",
+                    "type": "String",
+                    "value": null
+                },
+                {
+                    "name": "sentDateTime",
+                    "type": "DateTime",
+                    "value": null
+                },
+                {
+                    "name": "subject",
+                    "type": "String",
+                    "value": null
+                },
+                {
+                    "name": "toRecipients",
+                    "type": "String",
+                    "value": null
+                },
+                {
+                    "name": "webLink",
+                    "type": "String",
+                    "value": null
+                }
+            ]
+        },
+        {
+            "Id": "3F7E2E80-E59C-4E77-AE35-EF68BDB0A2B9",
+            "FriendlyTypeName": "Dropbox",
+            "ShortFriendlyTypeName": "Dropbox",
+            "Publisher": "RecordPoint",
+            "ContentSource": "Dropbox",
+            "NotificationTypes": [
+                "Ping",
+                "ItemDestroyed",
+                "ConnectorConfigCreated",
+                "ConnectorConfigDeleted",
+                "ConnectorConfigUpdated"
+            ],
+            "AllowClientIdOverride": false,
+            "UseNotificationPolling": false,
+            "IsHidden": false,
+            "AgentManifestUrl": "",
+            "Manifest": {
+                "ConnectorTypeManifestUIElements": [
+                    {
+                        "Icon": "link",
+                        "Key": "LinkAccount",
+                        "ValuesCanBeChangedAfterConnectorEnabled": false,
+                        "Type": "GenericLink",
+                        "Position": 0,
+                        "Properties": [],
+                        "Translations": [
+                            {
+                                "Language": "en-US",
+                                "Values": {
+                                    "title": "Link Account"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "Icon": "tasks",
+                        "Key": "AggregationLevel",
+                        "ValuesCanBeChangedAfterConnectorEnabled": false,
+                        "Type": "DropDown",
+                        "Position": 1,
+                        "Properties": [
+                            {
+                                "Name": "DropDownKeys",
+                                "Type": "String",
+                                "Value": "topmostfolder|lowestlevelfolder"
+                            }
+                        ],
+                        "Translations": [
+                            {
+                                "Language": "en-US",
+                                "Values": {
+                                    "title": "Set Aggregation Level",
+                                    "dropdowndescription": "Select Aggregation Level",
+                                    "topmostfolder": "Top Most Folder",
+                                    "lowestlevelfolder": "Lowest Level Folder"
+                                }
+                            },
+                            {
+                                "Language": "en-AU",
+                                "Values": {
+                                    "title": "Set Aggregation Level",
+                                    "dropdowndescription": "Select Aggregation Level",
+                                    "topmostfolder": "Top Most Folder",
+                                    "lowestlevelfolder": "Lowest Level Folder"
+								}
+							}
+						]
+					}
+				]
+			}
+		}
+    ],
+    "ElasticSearchLogging": {
+        "ElasticIndexName": "etwlogging"
+    },
+    "RollingLogFile": {
+        "LogFileName": "rpfabriclog.txt",
+        "RollSizeKB": "1024",
+        "MaxArchivedFiles": "10",
+        "TimestampPattern": "yyyy-MM-dd-hh-mm-ss",
+        "IsAsync": "true"
+    },
+    "ETWLogging": {
+        "LogToApplicationInsights": "true",
+        "LogToElasticSearch": "false",
+        "LogToRollingLogFile": "false"
+    },
+    "DisposalServiceMessaging": {
+        "MessagingSystem": "AzureServiceBus",
+        "QueueName": "disposal-service",
+        "MaxDegreeOfParallelism": 1
+    },
+    "FinalizationServiceMessaging": {
+        "MessagingSystem": "AzureServiceBus",
+        "QueueName": "finalization-service",
+        "MaxDegreeOfParallelism": 1,
+        "QueueCapacityMb": 1024
+    },
+    "ItemMetadataProcessorServiceMessaging": {
+        "MessagingSystem": "AzureServiceBus",
+        "QueueName": "item-metadata-processor-service",
+        "MaxDegreeOfParallelism": 4,
+        "EnablePartitioning": true,
+        "QueueCapacityMb": 5120,
+        "PrefetchCount": 10
+    },
+    "SPOBinaryProcessorServiceMessaging": {
+        "MessagingSystem": "AzureServiceBus",
+        "QueueName": "spo-binary-processor-service",
+        "MaxDegreeOfParallelism": 4,
+        "PrefetchCount": 10,
+        "QueueCapacityMb": 5120
+    },
+    "SPOChangeProcessorServiceMessaging": {
+        "MessagingSystem": "AzureServiceBus",
+        "QueueName": "spo-change-processor-service",
+        "MaxDegreeOfParallelism": 4,
+        "PrefetchCount": 10,
+        "QueueCapacityMb": 5120
+    },
+    "MetricLogging": {
+        "LogPath": "C:\\Logs\\MetricLogs.log"
+    },
+    "PollServiceOptions": {
+        "MaxDegreeOfParallelism": 4
+    },
+    "SiteCollectionMonitorServiceOptions": {
+        "MaxDegreeOfParallelism": 1
+    },
+    "Office365AuditServiceOptions": {
+        "MaxDegreeOfParallelism": 1
+    },
+    "SearchEngineSyncQueueMessaging": {
+        "MessagingSystem": "AzureServiceBus",
+        "QueueName": "search-engine-sync-queue",
+        "MaxDegreeOfParallelism": 1,
+        "QueueCapacityMb": 1024,
+        "MaxDeliveryCount": 3,
+        "EnableDeadLetteringOnMessageExpiration": true,
+        "RequiresDuplicateDetection": true,
+        "EnableBatchedOperations": false,
+        "EnablePartitioning": false,
+        "RequiresSession": false
+    }
+}
