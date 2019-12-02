@@ -1,4 +1,4 @@
-import os, uuid, json, re, ast
+import os, uuid, json, re, ast, jinja2
 from jsonmerge import merge, Merger
 from azure.keyvault import KeyVaultClient
 from azure.common.credentials import ServicePrincipalCredentials
@@ -11,6 +11,7 @@ azure_client_id    = os.environ['AZURE_CLIENT_ID']
 azure_client_secret= os.environ['AZURE_CLIENT_SECRET']
 azure_tenant_id    = os.environ['AZURE_TENANT_ID']
 vault_url          = os.environ['AZURE_KEY_VAULT_URL']
+environment        = os.environ['PIPELINE_ENVIRONMENT']
 
 # Base and environment json path
 json_path = './jsongenerator/json/'
@@ -24,6 +25,7 @@ credentials = ServicePrincipalCredentials(
     secret    = azure_client_secret,
     tenant    = azure_tenant_id
 )
+
 # create Azure Client
 client = KeyVaultClient(credentials)
 
@@ -33,9 +35,9 @@ def renderTemplate(vault_url):
     secret_list = map(retrieveValue,ids)
     secret_dict = dict(ChainMap(*secret_list))
     file_loader = FileSystemLoader(json_path)
-    env         = Environment(loader=file_loader)
+    env         = Environment(loader=file_loader, undefined=jinja2.StrictUndefined)
     template    = env.get_template(head_file)
-    head        = template.render(azurekv=secret_dict)
+    head        = template.render(azurekv=secret_dict, environment=environment)
     return (head)
 
 def retrieveValue(secret_id):
@@ -75,7 +77,8 @@ def main():
 
     with open(json_path + appsettings_json, 'w') as outfile:
         merged_appsettings_data = merge_head_to_base(base, head_json_output)
-        json.dump(merged_appsettings_data, outfile)
+        json.dump(merged_appsettings_data, outfile)    
+
 
 if __name__ == '__main__':
     main()
