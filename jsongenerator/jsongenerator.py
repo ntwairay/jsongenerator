@@ -1,50 +1,51 @@
-import os, uuid, json, re
+import os, uuid, json, re, ast
 from jsonmerge import merge, Merger
 from azure.keyvault import KeyVaultClient
 from azure.common.credentials import ServicePrincipalCredentials
+from jinja2 import Environment, FileSystemLoader
+from collections import ChainMap
 
 # Environment variable
 # vault_url must be in the format 'https://<vaultname>.vault.azure.net'
-azure_client_id    =os.environ['AZURE_CLIENT_ID']
-azure_client_secret=os.environ['AZURE_CLIENT_SECRET']
-azure_tenant_id    =os.environ['AZURE_TENANT_ID']
-vault_url          =os.environ['AZURE_KEY_VAULT_URL']
+azure_client_id    = os.environ['AZURE_CLIENT_ID']
+azure_client_secret= os.environ['AZURE_CLIENT_SECRET']
+azure_tenant_id    = os.environ['AZURE_TENANT_ID']
+vault_url          = os.environ['AZURE_KEY_VAULT_URL']
+
+# Base and environment json path
+json_path = './jsongenerator/json/'
+base_file = 'base.json'
+head_file = 'head.json'
+appsettings_json = 'appsettings.json'
 
 # Setup Azure service principle 
 credentials = ServicePrincipalCredentials(
-    client_id=azure_client_id,
-    secret   =azure_client_secret,
-    tenant   =azure_tenant_id
+    client_id = azure_client_id,
+    secret    = azure_client_secret,
+    tenant    = azure_tenant_id
 )
 # create Azure Client
 client = KeyVaultClient(credentials)
 
-def replace_value(pointer, bottom_key, secret_value):
-    try:
-        if bottom_key not in pointer:
-            print('Failed to replace key "{key}"'.format(key=bottom_key))        
-        else:
-            print('Replacing key "{key}"'.format(key=bottom_key))    
-            pointer[bottom_key] = secret_value
-    except KeyError:
-        print('Failed to replace delimited_key "{key}"'.format(key=bottom_key))
-    return pointer  
+def renderTemplate(vault_url):
+    secrets = client.get_secrets(vault_url)
+    ids     = [secret.as_dict()['id'] for secret in secrets]
+    secret_list = map(retrieveValue,ids)
+    secret_dict = dict(ChainMap(*secret_list))
+    file_loader = FileSystemLoader(json_path)
+    env         = Environment(loader=file_loader)
+    template    = env.get_template(head_file)
+    head        = template.render(azurekv=secret_dict)
+    return (head)
 
-def getPointer(appsettings_data, key):
-    pointer = appsettings_data
-    return pointer[key]
-  
-def retrieveValue(appsettings_data,secret_id):
+def retrieveValue(secret_id):
     regex = re.compile(vault_url + 'secrets/(.*)', re.IGNORECASE)
     match = regex.search(secret_id)
     assert match, 'Failed to parse the secret name from "{id}"'.format(id=id)
     secret_name   = match.group(1)
     secret_bundle = client.get_secret(vault_url, secret_name, "")
     secret_value  = secret_bundle.value
-    DELIMITER = '--'
-    keys      = secret_name.split(DELIMITER)
-    pointer   = [getPointer(appsettings_data,key) for key in keys[:-1]]
-    replace_value(pointer[0],keys[-1],secret_value)
+    return ({secret_name:secret_value})
 
 def merge_head_to_base (base, head):
     schema = {
@@ -62,22 +63,18 @@ def merge_head_to_base (base, head):
     return result
 
 def main():
-    secrets = client.get_secrets(vault_url)
-    ids = [secret.as_dict()['id'] for secret in secrets]
-
-    base_path = './jsongenerator/json/base.json'
-    head_path = './jsongenerator/json/head.json'
-
-    with open(base_path) as json_file:
+    with open(json_path + base_file) as json_file:
         base = json.load(json_file)
 
-    with open(head_path) as json_file:
-        head = json.load(json_file)
+    try: 
+        head = renderTemplate(vault_url)
+        head_json_output = json.loads(head)
+    except Exception as e:  # find real exception type 
+        print("Output template does not render as json: ", e)
+        return 
 
-    with open('result.json', 'w') as outfile:
-        merged_appsettings_data = merge_head_to_base(base, head)
-        # inject azure key vault secret
-        [retrieveValue(merged_appsettings_data, id) for id in ids]
+    with open(json_path + appsettings_json, 'w') as outfile:
+        merged_appsettings_data = merge_head_to_base(base, head_json_output)
         json.dump(merged_appsettings_data, outfile)
 
 if __name__ == '__main__':

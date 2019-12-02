@@ -1,1 +1,5 @@
 jsonmerge
+azure-keyvault
+azure-common
+jinja2
+ChainMap
