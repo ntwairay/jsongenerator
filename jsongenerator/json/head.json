@@ -1,0 +1,180 @@
+{
+    "SystemDatabase": {
+		"PrimaryConnection": "Server=rpfabric{{ environment }}postgres10.postgres.database.azure.com;Port=5432;Database=system_db;User Id=pgadmin@rpfabric{{ environment }}postgres10;Password={{ azurekv.SystemDatabasePassword }};SSL Mode=Require;Trust Server Certificate=true;"
+    },
+    "AzureAd": {
+		"JwtAudience": "https://rpfabric{{ environment }}.onmicrosoft.com/rpfabric",
+		"ClientId": "a3c0a6c1-4e07-4c70-a928-6868058279f0",
+		"ClientSecret": "{{ azurekv.AzureAdClientSecret }}",
+		"PostLogoutRedirectUri": "http://rpfabric{{ environment }}.westus.cloudapp.azure.com",
+		"Issuer": "https://sts.windows.net/0197995b-799c-4a34-a033-2b7151a8b07a/",
+		"TenantId": "0197995b-799c-4a34-a033-2b7151a8b07a",
+		"SysAdminGroup": "3ef0f7d8-8ad4-458c-bc71-25c86cf99124",
+		"SysGroupIssuer": "https://sts.windows.net/0197995b-799c-4a34-a033-2b7151a8b07a/"
+    },
+    "ConnectorDeployerOptions": {
+		"EnvironmentName": "{{ environment }}",
+		"SubscriptionId": "3482ea59-1f8f-408d-a000-d252d2a3b0d3",
+		"ClientId": "5cf87f77-3a07-48af-b146-4be7da040201",
+        "ClientSecret": "{{ azurekv.ConnectorDeployerOptionsClientSecret }}",
+        "ConnectorArtifactsUrl": "https://connectorartifacts.blob.core.windows.net/azurefunction-{{ environment }}/wwwroot.zip"
+    },
+    "Backup": {
+		"Location": "DefaultEndpointsProtocol=https;AccountName=rpfabric{{ environment }}sfbackups;AccountKey={{ azurekv.BackupAccountKey }};EndpointSuffix=core.windows.net"
+    },
+    "ApplicationInsights": {
+		"InstrumentationKey": "{{ azurekv.ApplicationInsightsInstrumentationKey }}"
+    },
+    "SPOChangeSubmissionOptions": {
+		"BoundedCapacity": 16,
+		"MaxDegreeOfParallelism": 8
+    },
+    "SharePointOnlineConnector": {
+		"ClientId": "8bc2fbf3-38d6-4a32-a085-0d248c18ce85",
+        "ClientSecret": "{{ azurekv.SharePointOnlineConnectorClientSecret }}",
+        "AppCertificate": "{{ azurekv.SharePointOnlineConnectorAppCertificate }}",
+		"AppCertificatePassword": "{{ azurekv.SharePointOnlineConnectorAppCertificatePassword }}",
+		"DefaultPollIntervalSeconds": 10
+    },
+    "LaunchDarklyFeatureToggle": {
+		"SdkKey": "sdk-3328e652-2a3b-44e1-adca-1e86917720e4",
+		"ClientSideId":  "{{ azurekv.LaunchDarklyFeatureToggleClientSideId }}",
+		"PollingIntervalSeconds": 30
+    },
+    "Diagnostics": {
+		"EnableRestServiceClientTracing": false
+    },
+    "Connector": {
+		"SubmissionRootUrl": "https://connector-{{ environment }}.eigerio.space/connector/"
+    },
+    "ConnectorGallery": [
+		{
+			"Id": "dad16653-9516-40fa-993a-d3d51706bb8d",
+			"NotificationUrl": "https://connector-{{ environment }}.eigerio.space/connector/api/webhook/sharepointonline",
+			"IconUrl": "https://{{ environment }}.eiger.space/assets/img/sharepointonline colour icon.svg",
+			"LogoUrl": "https://{{ environment }}.eiger.space/assets/img/sharepointonline colour logo.png",
+            "SettingsPageUrl": "https://{{ environment }}.eiger.space/administration/connectors/details/"
+        },
+        {
+			"Id": "13309acb-2bf8-4b51-a89c-e9a0625aa0dc",
+			"NotificationUrl": "https://connector-{{ environment }}.eigerio.space/connector/api/webhook/onedriveforbusiness",
+			"IconUrl": "https://{{ environment }}.eiger.space/assets/img/onedriveforbusiness-colour-icon.svg",
+			"LogoUrl": "https://{{ environment }}.eiger.space/assets/img/onedriveforbusiness-colour-logo.png",
+			"SettingsPageUrl": "https://{{ environment }}.eiger.space/administration/connectors/details/",
+            "DefaultAzureLocation": "australiaeast"
+        },
+        {
+			"Id": "4F83891D-0027-4DF9-BE3C-3C842644716A",
+			"ClientId": "a3c0a6c1-4e07-4c70-a928-6868058279f0",
+			"NotificationAuthenticationResource": "https://rpfabric{{ environment }}.onmicrosoft.com/rpfabric",
+			"NotificationUrl": "https://connector-{{ environment }}.eigerio.space/connector/api/webhook/deployableconnector",
+			"IconUrl": "https://{{ environment }}.eiger.space/assets/img/Box-Icon.png",
+			"LogoUrl": "https://{{ environment }}.eiger.space/assets/img/Box-Logo.png",
+			"SettingsPageUrl": "https://{{ environment }}.eiger.space/administration/connectors/details/"
+        },
+        {
+			"Id": "34D926C9-3891-4262-B7DE-1345B1CF2F92",
+			"NotificationTypes": [
+				"ItemDestroyed"
+			],
+			"IconUrl": "https://{{ environment }}.eiger.space/assets/img/FileConnect-Icon.png",
+			"LogoUrl": "https://{{ environment }}.eiger.space/assets/img/FileConnect-Logo.png",
+			"SettingsPageUrl": "https://{{ environment }}.eiger.space/administration/connectors/details/",
+			"AgentManifestUrl": "https://{{ environment }}agentinstallers.blob.core.windows.net/fileconnectagent/FileConnect.manifest.json"
+        },
+        {
+			"Id": "424548D6-4D1A-4A7F-8879-05E067F47773",
+			"IconUrl": "https://{{ environment }}.eiger.space/assets/img/Physical-Icon.png",
+			"LogoUrl": "https://{{ environment }}.eiger.space/assets/img/Physical-Logo.png",
+			"SettingsPageUrl": "https://{{ environment }}.eiger.space/administration/connectors/details/"
+        },
+        {
+			"Id": "7246bf40-e070-4148-a1cd-14abcb1ad910",
+			"IconUrl": "https://{{ environment }}.eiger.space/assets/img/SharePoint-Icon.svg",
+			"LogoUrl": "https://{{ environment }}.eiger.space/assets/img/SharePoint-Logo.png",
+			"AgentManifestUrl": "https://{{ environment }}agentinstallers.blob.core.windows.net/sharepointconnectoragent/SPConnector.manifest.json"
+        },
+        {
+			"Id": "0e964f1c-4bba-4f89-bcbf-403945971ec2",
+			"NotificationUrl": "https://connector-{{ environment }}.eigerio.space/connector/api/webhook/confluencecloud",
+			"IconUrl": "https://{{ environment }}.eiger.space/assets/img/Confluence-icon.png",
+			"LogoUrl": "https://{{ environment }}.eiger.space/assets/img/Confluence-logo.png"
+        },
+        {
+			"Id": "449d9018-9543-4cb7-886c-b84d4a1675aa",
+			"clientId": "a19b9f29-492f-4f85-8cef-b603a9372cf3",
+			"clientSecret": "{{ azurekv.ConnectorGalleryExchangeOnlineClientSecret }}",
+			"NotificationUrl": "https://{{ environment }}.eiger.space:44368/api",
+			"IconUrl": "https://{{ environment }}.eiger.space/assets/img/exchangeonline colour icon.png",
+			"LogoUrl": "https://{{ environment }}.eiger.space/assets/img/exchangeonline colour logo.png",
+			"SettingsPageUrl": "https://{{ environment }}.eiger.space/administration/connectors/details/"
+        },
+        {
+			"Id": "3F7E2E80-E59C-4E77-AE35-EF68BDB0A2B9",
+			"ClientId": "3e1a2c15-1f5e-4054-a57b-ba57007deeec",
+			"ClientSecret": "{{ azurekv.ConnectorGalleryDropboxConnectorClientSecret }}",
+			"ConsentUri": "https://{{ environment }}dropboxconnector.eigerio.space/connector/api/dropboxauth/connect",
+			"ConsentCallbackUri": "https://{{ environment }}dropboxconnector.eigerio.space/connector/api/dropboxauth/auth",
+			"NotificationAuthenticationResource": "https://recordpoint.com/DropboxConnector-{{ environment }}",
+			"NotificationUrl": "https://{{ environment }}dropboxconnector.eigerio.space/notifications/api",
+			"IconUrl": "https://{{ environment }}.eiger.space/assets/img/dropbox colour icon.svg",
+            "LogoUrl": "https://{{ environment }}.eiger.space/assets/img/dropbox colour logo.svg"
+        }
+    ],
+    "Url": {
+		"ManagementAPI": "https://management-{{ environment }}.eigerio.space",
+		"ManagementWeb": "https://{{ environment }}.eiger.space"
+	},
+    "ElasticSearchLogging": {
+		"ElasticConnection": "http://10.5.101.4:9200"
+    },
+    "DisposalServiceMessaging": {
+		"ConnectionString": "Endpoint=sb://rpfabric{{ environment }}1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey={{ azurekv.ServiceBusConnectionStringSharedAccessKey }}",
+        "MaxDegreeOfParallelism": 4,
+        "MemoryInMB": 1024,
+		"BlobStorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=rpfabric{{ environment }}messages;AccountKey={{ azurekv.BlobStorageConnectionStringAccountKey }};EndpointSuffix=core.windows.net",
+		"BlobStorageContainerName": "rpfabric{{ environment }}-disposal-service"
+    },
+    "FinalizationServiceMessaging": {
+		"ConnectionString": "Endpoint=sb://rpfabric{{ environment }}1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey={{ azurekv.ServiceBusConnectionStringSharedAccessKey }}",
+		"QueueCapacityMb": 1024,
+		"BlobStorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=rpfabric{{ environment }}messages;AccountKey={{ azurekv.BlobStorageConnectionStringAccountKey }};EndpointSuffix=core.windows.net",
+		"BlobStorageContainerName": "rpfabric{{ environment }}-finalization-service"
+    },
+    "ItemMetadataProcessorServiceMessaging": {
+        "ConnectionString": "Endpoint=sb://rpfabric{{ environment }}1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey={{ azurekv.ServiceBusConnectionStringSharedAccessKey }}",
+        "BlobStorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=rpfabric{{ environment }}messages;AccountKey={{ azurekv.BlobStorageConnectionStringAccountKey }};EndpointSuffix=core.windows.net",
+        "BlobStorageContainerName": "rpfabric{{ environment }}-item-metadata-processor-service"
+    },
+    "SPOBinaryProcessorServiceMessaging": {
+		"ConnectionString": "Endpoint=sb://rpfabric{{ environment }}1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey={{ azurekv.ServiceBusConnectionStringSharedAccessKey }}",
+		"BlobStorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=rpfabric{{ environment }}messages;AccountKey={{ azurekv.BlobStorageConnectionStringAccountKey }};EndpointSuffix=core.windows.net",
+		"BlobStorageContainerName": "rpfabric{{ environment }}-spo-binary-processor-service"
+    },
+    "SPOChangeProcessorServiceMessaging": {
+		"ConnectionString": "Endpoint=sb://rpfabric{{ environment }}1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey={{ azurekv.ServiceBusConnectionStringSharedAccessKey }}",
+		"BlobStorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=rpfabric{{ environment }}messages;AccountKey={{ azurekv.BlobStorageConnectionStringAccountKey }};EndpointSuffix=core.windows.net",
+		"BlobStorageContainerName": "rpfabric{{ environment }}-spo-change-processor-service"
+    },
+    "SearchEngineSyncQueueMessaging": {
+        "ConnectionString": "Endpoint=sb://rpfabric{{ environment }}cluster.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey={{ azurekv.ServiceBusConnectionStringSharedAccessKey }}"
+    },
+    "MachineLearning": {
+		"ExperimentURL": "https://mlservices-{{ environment }}.eigerio.space/",
+		"ModelURL": "https://mlservices-{{ environment }}.eigerio.space/",
+		"APIKey": "{{ azurekv.MachineLearningAPIKey }}"
+    },
+    "Redis": {
+		"ConnectionString": "{{ environment }}redislistitemstorage.redis.cache.windows.net:6380,password={{ azurekv.RedisPassword }},ssl=True,abortConnect=False"
+    },
+    "CustomConnectors": {
+        "BlobAccountName": "customconnectorassets",
+        "BlobAccessKey": "{{ azurekv.CustomerConnectorsBlobAccessKey }}"
+    },
+    "OneDriveForBusinessConnector": {
+        "ClientId": "cf03528d-2f50-4579-8f6b-d20dd8a67bbb",
+        "ClientSecret": "{{ azurekv.OneDriveForBusinessConnectorClientSecret }}",
+        "AppCertificate": "{{ azurekv.OneDriveForBusinessConnectorAppCertificate }}",
+        "AppCertificatePassword": "{{ azurekv.OneDriveForBusinessConnectorAppCertificatePassword }}"
+    }
+}
