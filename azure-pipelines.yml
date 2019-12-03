@@ -32,7 +32,7 @@ jobs:
     displayName: 'Generate appsettings.json'
 
   - script: |
-      ls ./src/json
-      export JSON_OUTPUT=$(cat ./src/json/appsettings.json)
+      ls ./json
+      export JSON_OUTPUT=$(cat ./json/appsettings.json)
       echo $JSON_OUTPUT
     displayName: 'Check appsettings.json output'
