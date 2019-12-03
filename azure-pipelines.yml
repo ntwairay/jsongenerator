@@ -22,11 +22,15 @@ jobs:
     displayName: 'Install requirements'
 
   - script: |
-      echo $PIPELINE_ENVIRONMENT
       python jsongenerator/jsongenerator.py 
     env:
-      AZURE_KEY_VAULT_URL: $AZURE_KEY_VAULT_URL
+      PIPELINE_ENVIRONMENT: $PIPELINE_ENVIRONMENT
+      AZURE_KEY_VAULT_URL : $AZURE_KEY_VAULT_URL
+      AZURE_CLIENT_ID     : $AZURE_CLIENT_ID
+      AZURE_CLIENT_SECRET : $AZURE_CLIENT_SECRET
+      AZURE_TENANT_ID     : $AZURE_TENANT_ID
+
     displayName: 'Execute Python script'
 
-  - script: jsongenerator/json/appsettings.json
+  - script: cat jsongenerator/json/appsettings.json
     displayName: 'Check appsettings.json output'
