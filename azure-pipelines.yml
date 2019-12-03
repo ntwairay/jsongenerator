@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 jobs:
-- job: Generating Appsetting.json
+- job: Generating_Appsetting
   variables:
   - group: appsettings-generator
   steps:
