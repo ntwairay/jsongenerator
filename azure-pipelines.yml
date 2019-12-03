@@ -17,4 +17,8 @@ steps:
 - script: pip install -r requirements.txt
   displayName: 'Install requirements'
 
+- script: python jsongenerator/jsongenerator.py 
+  displayName: 'Execute Python script'
 
+- script: jsongenerator/json/appsettings.json
+  displayName: 'Check appsettings.json output'
