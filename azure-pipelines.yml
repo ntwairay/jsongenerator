@@ -24,12 +24,12 @@ jobs:
   - script: |
       python jsongenerator/jsongenerator.py 
     env:
-      PIPELINE_ENVIRONMENT: $PIPELINE_ENVIRONMENT
-      AZURE_KEY_VAULT_URL : $AZURE_KEY_VAULT_URL
-      AZURE_CLIENT_ID     : $AZURE_CLIENT_ID
-      AZURE_CLIENT_SECRET : $AZURE_CLIENT_SECRET
-      AZURE_TENANT_ID     : $AZURE_TENANT_ID
-
+      PIPELINE_ENVIRONMENT : $PIPELINE_ENVIRONMENT
+      AZURE_SUBSCRIPTION_ID: $AZURE_SUBSCRIPTION_ID
+      AZURE_KEY_VAULT_URL  : $AZURE_KEY_VAULT_URL
+      AZURE_CLIENT_ID      : $AZURE_CLIENT_ID
+      AZURE_CLIENT_SECRET  : $AZURE_CLIENT_SECRET
+      AZURE_TENANT_ID      : $AZURE_TENANT_ID
     displayName: 'Execute Python script'
 
   - script: cat jsongenerator/json/appsettings.json
