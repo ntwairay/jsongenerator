@@ -1,5 +1,5 @@
 jsonmerge
-azure-keyvault
+azure-keyvault==4.0.0
 azure-common
 azure-cli-core
 jinja2
