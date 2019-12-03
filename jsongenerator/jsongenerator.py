@@ -1,15 +1,29 @@
 import os, uuid, json, re, ast, jinja2
 from jsonmerge import merge, Merger
+from azure.common.client_factory import get_client_from_cli_profile
 from azure.keyvault import KeyVaultClient
-from azure.common.credentials import ServicePrincipalCredentials
 from jinja2 import Environment, FileSystemLoader
 from collections import ChainMap
+# from azure.common.credentials import ServicePrincipalCredentials
+
+# # ServicePrincipalCredentials is not in used
+# azure_client_id    = os.environ['AZURE_CLIENT_ID']
+# azure_client_secret= os.environ['AZURE_CLIENT_SECRET']
+# azure_tenant_id    = os.environ['AZURE_TENANT_ID']
+
+# # Azure service principle is not in used
+# credentials = ServicePrincipalCredentials(
+#     client_id = azure_client_id,
+#     secret    = azure_client_secret,
+#     tenant    = azure_tenant_id
+# )
+
+# # Azure service principle is not in used
+# client = KeyVaultClient(credentials)
+
 
 # Environment variable
 # vault_url must be in the format 'https://<vaultname>.vault.azure.net'
-azure_client_id    = os.environ['AZURE_CLIENT_ID']
-azure_client_secret= os.environ['AZURE_CLIENT_SECRET']
-azure_tenant_id    = os.environ['AZURE_TENANT_ID']
 vault_url          = os.environ['AZURE_KEY_VAULT_URL']
 environment        = os.environ['PIPELINE_ENVIRONMENT']
 
@@ -19,15 +33,8 @@ base_file = 'base.json'
 head_file = 'head.json'
 appsettings_json = 'appsettings.json'
 
-# Setup Azure service principle 
-credentials = ServicePrincipalCredentials(
-    client_id = azure_client_id,
-    secret    = azure_client_secret,
-    tenant    = azure_tenant_id
-)
-
-# create Azure Client
-client = KeyVaultClient(credentials)
+# Setup Azure client
+client = get_client_from_cli_profile(KeyVaultClient)
 
 def renderTemplate(vault_url):
     secrets = client.get_secrets(vault_url)

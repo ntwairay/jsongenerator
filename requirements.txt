@@ -1,5 +1,6 @@
 jsonmerge
 azure-keyvault
 azure-common
+azure-cli-core
 jinja2
 ChainMap
