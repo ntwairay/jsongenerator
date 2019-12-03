@@ -3,25 +3,27 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-variables:
-- group: appsettings-generator
-
 trigger:
 - master
 
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '3.7'
+jobs:
+- job: Generating Appsetting.json
+  variables:
+  - group: appsettings-generator
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.7'
 
-- script: pip install -r requirements.txt
-  displayName: 'Install requirements'
+  - script: pip install -r requirements.txt
+    displayName: 'Install requirements'
 
-- script: python jsongenerator/jsongenerator.py 
-  displayName: 'Execute Python script'
+  - script: |
+    python jsongenerator/jsongenerator.py 
+    displayName: 'Execute Python script'
 
-- script: jsongenerator/json/appsettings.json
-  displayName: 'Check appsettings.json output'
+  - script: jsongenerator/json/appsettings.json
+    displayName: 'Check appsettings.json output'
