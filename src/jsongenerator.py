@@ -24,7 +24,7 @@ credentials = ServicePrincipalCredentials(
 client = KeyVaultClient(credentials)
 
 # Base and environment json path
-json_path = './jsongenerator/json/'
+json_path = './src/json/'
 base_file = 'base.json'
 head_file = 'head.json'
 appsettings_json = 'appsettings.json'

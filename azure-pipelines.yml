@@ -21,7 +21,7 @@ jobs:
   - script: pip install -r requirements.txt
     displayName: 'Install requirements'
 
-  - script: python jsongenerator/jsongenerator.py 
+  - script: python src/jsongenerator.py 
     env:
       PIPELINE_ENVIRONMENT : $PIPELINE_ENVIRONMENT
       AZURE_SUBSCRIPTION_ID: $AZURE_SUBSCRIPTION_ID
@@ -29,10 +29,10 @@ jobs:
       AZURE_CLIENT_ID      : $AZURE_CLIENT_ID
       AZURE_CLIENT_SECRET  : $AZURE_CLIENT_SECRET
       AZURE_TENANT_ID      : $AZURE_TENANT_ID
-    displayName: 'Execute Python script'
+    displayName: 'Generate appsettings.json'
 
   - script: |
-      ls ./jsongenerator/json
-      export JSON_OUTPUT=$(cat ./jsongenerator/json/appsettings.json)
+      ls ./src/json
+      export JSON_OUTPUT=$(cat ./src/json/appsettings.json)
       echo $JSON_OUTPUT
     displayName: 'Check appsettings.json output'
