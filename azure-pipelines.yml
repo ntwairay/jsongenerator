@@ -38,8 +38,7 @@ jobs:
   - script: python3.7 src/jsondiff.py 
     displayName: 'Run Json Diff'
 
-  - script: |
-      ls ./json
-      export JSON_OUTPUT=$(cat ./json/appsettings-uat.json)
-      echo $JSON_OUTPUT
-    displayName: 'Check appsettings.json output'
+  - script: az storage blob upload  -c $PIPELINE_ENVIRONMENT -n appsettings-$PIPELINE_ENVIRONMENT.json -f ./json/appsettings-$PIPELINE_ENVIRONMENT.json
+    env:
+       AZURE_STORAGE_CONNECTION_STRING : $(AZURE_STORAGE_CONNECTION_STRING)
+    displayName: 'Upload appsettings to azure blob storage'
