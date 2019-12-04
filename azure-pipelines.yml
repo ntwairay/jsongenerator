@@ -1,44 +1,11 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-latest'
+variables:
+- group: appsettings-generator
 
-jobs:
-- job: Generating_appsetting
-  variables:
-  - group: appsettings-generator
-  steps:
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '3.7'
-
-  - script: pip install -r requirements.txt
-    displayName: 'Install requirements'
-
-  - script: python src/jsongenerator.py 
-    env:
-      AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
-      AZURE_KEY_VAULT_URL  : $(AZURE_KEY_VAULT_URL)
-      AZURE_CLIENT_ID      : $(AZURE_CLIENT_ID)
-      AZURE_CLIENT_SECRET  : $(AZURE_CLIENT_SECRET)
-      AZURE_TENANT_ID      : $(AZURE_TENANT_ID)
-    displayName: 'Generate appsettings.json'
-  
-  - script: az storage blob download -c $PIPELINE_ENVIRONMENT -n appsettings-$PIPELINE_ENVIRONMENT.json -f ./json/appsettings-current.json
-    env:
-       AZURE_STORAGE_CONNECTION_STRING : $(AZURE_STORAGE_CONNECTION_STRING)
-    displayName: 'Download current appsettings.json'
-  
-  - script: python3.7 src/jsondiff.py 
-    displayName: 'Run json diff'
-
-  - script: az storage blob upload -c $PIPELINE_ENVIRONMENT -n appsettings-$PIPELINE_ENVIRONMENT.json -f ./json/appsettings-$PIPELINE_ENVIRONMENT.json
-    env:
-       AZURE_STORAGE_CONNECTION_STRING : $(AZURE_STORAGE_CONNECTION_STRING)
-    displayName: 'Upload appsettings to azure blob storage'
+stages:
+- template: ./build-appsettings.yml  # Template reference
+  parameters:
+    environment: $PIPELINE_ENVIRONMENT 
+    pool: 'ubuntu-latest'
