@@ -2,7 +2,7 @@ import os, json
 from deepdiff import DeepDiff  # For Deep Difference of 2 objects
 
 # environment variable
-environment        = os.environ['PIPELINE_ENVIRONMENT']
+environment  = os.environ['PIPELINE_ENVIRONMENT']
 
 # path
 json_path    = './json/'
@@ -26,7 +26,7 @@ def main():
 
     try: 
         compare(current_appsettings, new_appsettings)
-    except Exception:  # find real exception type 
+    except Exception:
         print(new_file + " is up to date.")
         return 
 
