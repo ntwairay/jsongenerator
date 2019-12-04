@@ -30,6 +30,12 @@ jobs:
       AZURE_CLIENT_SECRET  : $AZURE_CLIENT_SECRET
       AZURE_TENANT_ID      : $AZURE_TENANT_ID
     displayName: 'Generate appsettings.json'
+  
+  - script: az storage blob download -c $$PIPELINE_ENVIRONMENT -n appsettings-$PIPELINE_ENVIRONMENT.json -f ./json/appsettings-current.json
+    env:
+      PIPELINE_ENVIRONMENT : $PIPELINE_ENVIRONMENT
+      AZURE_STORAGE_CONNECTION_STRING : $AZURE_STORAGE_CONNECTION_STRING
+    displayName: 'Download current appsettings.json'
 
   - script: |
       ls ./json
