@@ -1,4 +1,4 @@
-import os, uuid, json, re, ast, jinja2
+import os, json, re, jinja2
 from jsonmerge import merge, Merger
 from azure.keyvault import KeyVaultClient
 from jinja2 import Environment, FileSystemLoader
@@ -27,7 +27,7 @@ client = KeyVaultClient(credentials)
 json_path = './json/'
 base_file = 'base.json'
 head_file = 'head.json'
-appsettings_json = 'appsettings.json'
+appsettings_json = 'appsettings-'+environment +'.json'
 
 def renderTemplate(vault_url):
     secrets = client.get_secrets(vault_url)
