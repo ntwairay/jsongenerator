@@ -1,6 +1,6 @@
 jsonmerge
 azure-keyvault==1.1.0
 azure-common
-azure-cli-core
 jinja2
 ChainMap
+DeepDiff
