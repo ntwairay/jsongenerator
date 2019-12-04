@@ -6,7 +6,7 @@ environment        = os.environ['PIPELINE_ENVIRONMENT']
 
 # path
 json_path    = './json/'
-current_file = 'appsettings-old.json'
+current_file = 'appsettings-current.json'
 new_file     = 'appsettings-'+environment +'.json'
 
 def compare(current, new):
