@@ -1,7 +1,7 @@
 # File: stages/build-appsettings.yml
-  parameters:
-    environment: ''
-    pool: ''
+parameters:
+  environment: ''
+  pool: ''
 
 stages:
 - stage: Build_Appsettings_json
