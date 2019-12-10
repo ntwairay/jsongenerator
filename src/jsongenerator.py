@@ -8,6 +8,8 @@ from azure.common.credentials import ServicePrincipalCredentials
 
 print(os.environ)
 
+print(os.environ['BackupAccountKey'])
+
 # Environment variable
 # vault_url must be in the format 'https://<vaultname>.vault.azure.net'
 vault_url          = os.environ['AZURE_KEY_VAULT_URL']
