@@ -1,11 +1,7 @@
 trigger:
 - master
 
-variables:
-- group: appsettings-generator
-
 stages:
 - template: ./build-appsettings.yml  # Template reference
   parameters:
-    environment: $PIPELINE_ENVIRONMENT 
     pool: 'ubuntu-latest'

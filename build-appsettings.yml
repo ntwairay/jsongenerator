@@ -1,6 +1,5 @@
 # File: stages/build-appsettings.yml
 parameters:
-  environment: ''
   pool: ''
 
 stages:
@@ -10,11 +9,16 @@ stages:
     pool:
       vmImage: ${{ parameters.pool }}
     variables:
-    - group: appsettings-generator
+    - group: appsettings-generator-uat
     steps:
     - task: UsePythonVersion@0
       inputs:
         versionSpec: '3.7'
+    - task: AzureKeyVault@1
+      inputs:
+        azureSubscription: 'ntwairay-azure'
+        KeyVaultName: 'rpazurekeyvault'
+        SecretsFilter: '*'
 
     - script: pip install -r requirements.txt
       displayName: 'Install requirements'
