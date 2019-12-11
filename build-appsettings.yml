@@ -39,7 +39,9 @@ stages:
           ARM_CLIENT_ID="$servicePrincipalId" \
           ARM_CLIENT_SECRET="$servicePrincipalKey" \
           ARM_TENANT_ID="$tenantId" \
-          echo $servicePrincipalKey
+          echo $servicePrincipalKey \
+          echo $tenantId \
+          echo $servicePrincipalId
 
     - script: python src/jsongenerator.py 
       env:
