@@ -36,8 +36,8 @@ stages:
         scriptType: bash
         scriptLocation: inlineScript
         inlineScript: |
-          export AZURE_KEY_VAULT_URL=$(AZURE_KEY_VAULT_URL) \
-          export AZURE_SUBSCRIPTION_ID=$(AZURE_SUBSCRIPTION_ID) \
+          AZURE_KEY_VAULT_URL=$(AZURE_KEY_VAULT_URL) \
+          AZURE_SUBSCRIPTION_ID=$(AZURE_SUBSCRIPTION_ID) \
           python src/jsongenerator.py 
 
 
