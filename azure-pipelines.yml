@@ -6,3 +6,4 @@ stages:
   parameters:
     pool: 'ubuntu-latest'
     target_spn: 'ntwairay-azure'
+    azure_key_vault_url: $(AZURE_KEY_VAULT_URL)

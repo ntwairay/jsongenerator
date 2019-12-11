@@ -1,6 +1,8 @@
 # File: stages/build-appsettings.yml
 parameters:
   pool: ''
+  target_spn: ''
+  azure_key_vault_url: ''
 
 stages:
 - stage: Build_Appsettings_json
@@ -36,18 +38,8 @@ stages:
         scriptType: bash
         scriptLocation: inlineScript
         inlineScript: |
-          AZURE_KEY_VAULT_URL=$(AZURE_KEY_VAULT_URL) \
+          AZURE_KEY_VAULT_URL=${{ parameters.azure_key_vault_url }} \
           python src/jsongenerator.py 
-
-
-    # - script: python src/jsongenerator.py 
-    #   env:
-    #     AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
-    #     AZURE_KEY_VAULT_URL  : $(AZURE_KEY_VAULT_URL)
-    #     AZURE_CLIENT_ID      : $(AZURE_CLIENT_ID)
-    #     AZURE_CLIENT_SECRET  : $(AZURE_CLIENT_SECRET)
-    #     AZURE_TENANT_ID      : $(AZURE_TENANT_ID)
-    #   displayName: 'Generate appsettings.json'
     
     - script: az storage blob download -c $PIPELINE_ENVIRONMENT -n appsettings-$PIPELINE_ENVIRONMENT.json -f ./json/appsettings-current.json
       env:
