@@ -36,21 +36,19 @@ stages:
         scriptType: bash
         scriptLocation: inlineScript
         inlineScript: |
-          ARM_CLIENT_ID="$servicePrincipalId" \
-          ARM_CLIENT_SECRET="$servicePrincipalKey" \
-          ARM_TENANT_ID="$tenantId" \
-          echo $servicePrincipalKey \
-          echo $tenantId \
-          echo $servicePrincipalId
+          export AZURE_KEY_VAULT_URL=$(AZURE_KEY_VAULT_URL) \
+          export AZURE_SUBSCRIPTION_ID=$(AZURE_SUBSCRIPTION_ID) \
+          python src/jsongenerator.py 
 
-    - script: python src/jsongenerator.py 
-      env:
-        AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
-        AZURE_KEY_VAULT_URL  : $(AZURE_KEY_VAULT_URL)
-        AZURE_CLIENT_ID      : $(AZURE_CLIENT_ID)
-        AZURE_CLIENT_SECRET  : $(AZURE_CLIENT_SECRET)
-        AZURE_TENANT_ID      : $(AZURE_TENANT_ID)
-      displayName: 'Generate appsettings.json'
+
+    # - script: python src/jsongenerator.py 
+    #   env:
+    #     AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
+    #     AZURE_KEY_VAULT_URL  : $(AZURE_KEY_VAULT_URL)
+    #     AZURE_CLIENT_ID      : $(AZURE_CLIENT_ID)
+    #     AZURE_CLIENT_SECRET  : $(AZURE_CLIENT_SECRET)
+    #     AZURE_TENANT_ID      : $(AZURE_TENANT_ID)
+    #   displayName: 'Generate appsettings.json'
     
     - script: az storage blob download -c $PIPELINE_ENVIRONMENT -n appsettings-$PIPELINE_ENVIRONMENT.json -f ./json/appsettings-current.json
       env:
