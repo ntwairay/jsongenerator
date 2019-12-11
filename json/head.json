@@ -174,7 +174,7 @@
     "OneDriveForBusinessConnector": {
         "ClientId": "cf03528d-2f50-4579-8f6b-d20dd8a67bbb",
         "ClientSecret": "{{ azurekv.OneDriveForBusinessConnectorClientSecret }}",
-        "AppCertificate": "{{ azurekv.OneDriveForBusinessConnectorAppCertificate }}",
+        "AppCertificate": "{{ azurekv.OneDriveForBusinessConnectorAppCertificate2 }}",
         "AppCertificatePassword": "{{ azurekv.OneDriveForBusinessConnectorAppCertificatePassword }}"
     }
 }
