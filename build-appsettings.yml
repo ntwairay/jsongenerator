@@ -28,6 +28,19 @@ stages:
     - script: pip install -r requirements.txt
       displayName: 'Install requirements'
 
+    - task: AzureCLI@2
+      displayName: 'Test'
+      inputs:
+        addSpnToEnvironment: true
+        azureSubscription: ntwairay-azure
+        scriptType: bash
+        scriptLocation: inlineScript
+        inlineScript: |
+          ARM_CLIENT_ID="$servicePrincipalId" \
+          ARM_CLIENT_SECRET="$servicePrincipalKey" \
+          ARM_TENANT_ID="$tenantId" \
+          echo $servicePrincipalKey
+
     - script: python src/jsongenerator.py 
       env:
         AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
