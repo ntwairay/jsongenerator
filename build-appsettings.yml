@@ -32,12 +32,11 @@ stages:
       displayName: 'Test'
       inputs:
         addSpnToEnvironment: true
-        azureSubscription: ntwairay-azure
+        azureSubscription: ${{ parameters.target_spn }}
         scriptType: bash
         scriptLocation: inlineScript
         inlineScript: |
           AZURE_KEY_VAULT_URL=$(AZURE_KEY_VAULT_URL) \
-          AZURE_SUBSCRIPTION_ID=$(AZURE_SUBSCRIPTION_ID) \
           python src/jsongenerator.py 
 
 

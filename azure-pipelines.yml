@@ -5,3 +5,4 @@ stages:
 - template: ./build-appsettings.yml  # Template reference
   parameters:
     pool: 'ubuntu-latest'
+    target_spn: 'ntwairay-azure'
