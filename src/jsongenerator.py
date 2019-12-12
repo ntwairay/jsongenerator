@@ -80,8 +80,7 @@ def main(argv=sys.argv):
         head = renderTemplate(vault_url, json_path, head_file, environment)
         head_json_output = json.loads(head)
     except Exception as e:  # find real exception type 
-        print("Output template does not render as json: ", e)
-        return 1 
+        sys.exit("Output template does not render as json: ", e)
 
     with open(json_path + appsettings_json, 'w') as outfile:
         merged_appsettings_data = merge_head_to_base(base, head_json_output)
